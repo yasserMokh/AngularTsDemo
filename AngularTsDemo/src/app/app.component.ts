@@ -1,26 +1,18 @@
-import { HttpClient } from '@angular/common/http';
-import { Component } from '@angular/core';
+import { Component } from '@angular/core'
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  templateUrl: './app.component.html'
 })
 export class AppComponent {
-  public forecasts?: WeatherForecast[];
+  title: string = 'AngularTS Demo';
+  imgPath: string = 'https://api.freelogodesign.org/assets/thumb/logo/5072150_400.png?t=637946206510000000';
+  btnDisabled: boolean = false;
 
-  constructor(http: HttpClient) {
-    http.get<WeatherForecast[]>('/weatherforecast').subscribe(result => {
-      this.forecasts = result;
-    }, error => console.error(error));
+  firstName: string = 'Tim';
+  lastName: string = 'Collins';
+
+  getFullName() {
+    return this.firstName + ' ' + this.lastName;
   }
-
-  title = 'AngularTsDemo';
-}
-
-interface WeatherForecast {
-  date: string;
-  temperatureC: number;
-  temperatureF: number;
-  summary: string;
 }
