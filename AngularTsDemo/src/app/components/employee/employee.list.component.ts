@@ -16,10 +16,12 @@ export class EmployeeListComponent implements OnInit {
     this.allEmployees = [];
     this.employees = [];
   }
-    ngOnInit(): void {
-      this.allEmployees = this._employeeService.getAllEmployees();
+  ngOnInit(): void {
+    this._employeeService.getAllEmployees().subscribe(results => {
+      this.allEmployees = results;
       this.employees = this.filterEmployeesByGender(this.allEmployees, this.selectedGender);
-    }
+    }, err => console.error(err));
+  }
 
   filterEmployeesByGender(allEmp: any[], gender: string): any[] {
     if (gender.toLocaleLowerCase() === 'all') {
@@ -37,7 +39,7 @@ export class EmployeeListComponent implements OnInit {
   }
 
   getMaleEmployeesCount(): number {
-    return this.allEmployees.filter(e=>e.gender.toLowerCase()==='male').length;
+    return this.allEmployees.filter(e => e.gender.toLowerCase() === 'male').length;
   }
 
   getFemaleEmployeesCount(): number {
