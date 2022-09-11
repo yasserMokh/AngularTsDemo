@@ -1,4 +1,4 @@
-<table>
+<table *ngIf="employee">
   <thead>
     <tr>
       <td [attr.colspan]='colSpan'>
@@ -9,18 +9,18 @@
   <tbody>
     <tr>
       <td>
-        first name:
+        code:
       </td>
       <td>
-        {{firstName}}
+        {{employee.code}}
       </td>
     </tr>
     <tr>
       <td>
-        last name:
+        name:
       </td>
       <td>
-        {{lastName}}
+        {{employee.name}}
       </td>
     </tr>
     <tr *ngIf="showDetails">
@@ -28,28 +28,30 @@
         gender:
       </td>
       <td>
-        {{gender}}
+        {{employee.gender}}
       </td>
     </tr>
     <tr *ngIf="showDetails">
       <td>
-        age:
+        birth date:
       </td>
       <td>
-        {{age}}
+        {{employee.dateOfBirth}}
       </td>
     </tr>
   </tbody>
 </table>
 <br />
-<button (click)="toggleDetails()">{{(showDetails) ? 'Hide' : 'Show' }} Details</button>
+<button (click)="toggleDetails()" class="btn btn-primary" > {{(showDetails) ? 'Hide' : 'Show' }} Details</button>
+<br/>
+<button (click)="onBackClicked()" class="btn btn-primary"> Back </button>
 <br />
 <br />
-<input [value]="name" (input)="textInput($event)" />
+<!--<input [value]="name" (input)="textInput($event)" />
 <br />
 <span>you entered: {{name}}</span>
 <br />
 <br />
 <input [(ngModel)]="twoWay"/>
 <br />
-<span>you entered: {{twoWay}}</span>
+<span>you entered: {{twoWay}}</span>-->

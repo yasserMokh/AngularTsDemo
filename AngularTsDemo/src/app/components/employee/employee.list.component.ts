@@ -4,8 +4,7 @@ import { EmployeeService } from '../../services/employee.service';
 
 @Component({
   selector: 'employee-list',
-  templateUrl: './employee.list.component.html',
-  providers: [EmployeeService]
+  templateUrl: './employee.list.component.html'  
 })
 export class EmployeeListComponent implements OnInit {
   allEmployees: IEmployee[];

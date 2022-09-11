@@ -1,10 +1,10 @@
-<br/>
+<br />
 <br />
 <gender-filter [all]="getTotalEmployeesCount()"
                [male]="getMaleEmployeesCount()"
                [female]="getFemaleEmployeesCount()"
                (selectionChanged)="onGenderSelectionChanged($event)"></gender-filter>
-<br/>
+<br />
 <br />
 <table>
   <thead>
@@ -41,7 +41,11 @@
       </td>
     </tr>
     <tr *ngFor="let emp of employees; trackBy: empTrackByCode; let i = index; let isFirst = first; let isLast = last; let isOdd = odd; let isEven = even">
-      <td>{{emp.code | uppercase}}</td>
+      <td>
+        <a [routerLink]="['/employees', emp.code]">
+          {{emp.code | uppercase}}
+        </a>
+      </td>
       <td>{{emp.name | genderTitle: emp.gender}}</td>
       <td>{{emp.gender}}</td>
       <td>{{emp.annualSalary | currency: 'USD': true: '1.3-3'}}</td>

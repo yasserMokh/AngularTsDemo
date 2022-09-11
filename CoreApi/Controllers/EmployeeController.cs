@@ -8,7 +8,7 @@ namespace CoreApi.Controllers
 {
     [Route("[controller]")]
     [ApiController]
-    public class EmployeeController : ControllerBase
+    public class EmployeesController : ControllerBase
     {
         private readonly Employee[] employees = new Employee[]
         {
@@ -19,10 +19,21 @@ namespace CoreApi.Controllers
            new Employee(){ Code= "emp105", Name= "So", Gender= "Female", AnnualSalary= 8500.826, DateOfBirth= new DateTime(1990, 10, 1)}
         };
 
-        [HttpGet(Name = "GetEmployees")]
+        [HttpGet]
         public IEnumerable<Employee> Get()
         {
             return employees;
+        }
+
+        [HttpGet("{code}")]
+        public IActionResult Get(string code)
+        {
+            var emp = employees.FirstOrDefault(e => e.Code == code);
+            if (emp == null)
+            {
+                return NotFound();
+            }
+            return Ok(emp);
         }
     }
 }
